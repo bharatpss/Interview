@@ -7,7 +7,7 @@ Created on Wed Aug 19 16:41:13 2020
 import time
 
 
-
+s = time.time()
 A = [2,3,4,5]
 B = [8,7,2,3]
 C = [4,5,6,7]
@@ -32,6 +32,7 @@ else:
 '''
 
 def opt_function(L1,L2,L3,L4):
+    que.queue.clear()
     count = 0
     for i in L1:
         que.put(i)
@@ -42,7 +43,7 @@ def opt_function(L1,L2,L3,L4):
         else:
             pass
     
-    print(list(que.queue))    
+    #print(list(que.queue))    
     for i in L3:
         if i not in list(que.queue):
             que.get()
@@ -53,8 +54,8 @@ def opt_function(L1,L2,L3,L4):
         else:
         #print(new)
             pass
-    print(list(que.queue))
-    print(count)
+    #print(list(que.queue))
+    #print(count)
 
     for i in L4:
         if i not in list(que.queue):
@@ -65,78 +66,28 @@ def opt_function(L1,L2,L3,L4):
         else:
         #print(new)
             pass
-    print(list(que.queue))
-    print(count)
+    #print(list(que.queue))
+    return(count)
         
         
 #opt_function(A,B,C,D)
              
 from itertools import permutations 
-import string
-permList = permutations("ABCD")
+#import string
+permList = permutations([A,B,C,D])
   
 # print all permutations 
 for perm in list(permList): 
-    print (perm[0])
-    #opt_function(','.join(perm))
+    #print(perm)
+    result = opt_function(perm[0], perm[1], perm[2], perm[3])
+    if result == 2:
+        print(perm)
+    else:
+        pass
              
 #print(a_set.union(b_set))
 #que.put(a_set.union(b_set))
 #print(list(que.queue))
 #new = a_set.union(b_set)
-print(type(A))
-
-'''
-for i in c_set:
-    if i not in new:
-        #que.put(i)
-        new.add(i)
-        #print(i)
-    else:
-        print(new)
-        #pass
-        '''       
-        
-#print(list(que.queue))
-
-'''a = lambda x:x**2
-print(a(5))'''
-
-'''print('A', a_set)
-print('B', b_set)
-print(a_set.union(b_set))
-print(a_set.intersection(b_set))
-print(a_set - b_set)
-print(b_set - a_set)
-print(a_set ^ b_set)
-print(b_set ^ a_set)
-print(a_set.symmetric_difference(b_set))'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+e = time.time()
+print(e-s)
