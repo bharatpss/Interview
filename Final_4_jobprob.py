@@ -6,6 +6,9 @@ Created on Thu Aug 20 09:28:46 2020
 """
 
 import time
+from collections import deque
+from itertools import permutations
+import pandas as pd
 
 
 
@@ -16,9 +19,18 @@ D = [8,9,2,6,1,5]
 E = [5,2,6,3,4,8]
 F = [6,3,4,8,2,7]
 '''
-n = 6#int(input("Enter number of elements : ")) 
-  
-A = list(map(int,input("\nEnter the numbers for A: ").strip().split()))[:n`]
+n = int(input("Enter number of elements : "))
+
+'''user_input = raw_input("Please enter five numbers separated by a single space only: ")
+input_numbers = [int(i) for i in user_input.split(' ') if i.isdigit()]'''
+
+
+try:
+    A = list(map(int,input("\nEnter the numbers for A: ").strip().split()))
+except ValueError:
+    print("That wasn't an integer :(")
+     
+
 B = list(map(int,input("\nEnter the numbers for B: ").strip().split()))[:n]
 C = list(map(int,input("\nEnter the numbers for C: ").strip().split()))[:n]
 D = list(map(int,input("\nEnter the numbers for D: ").strip().split()))[:n]
@@ -27,7 +39,7 @@ F = list(map(int,input("\nEnter the numbers for F: ").strip().split()))[:n]
 s = time.time()
 max_size = 8
 
-from collections import deque
+
 
 que = deque(maxlen= max_size)
 
@@ -167,7 +179,7 @@ def opt_function(L1,L2,L3,L4,L5,L6):
 #opt_function([5, 2, 6, 3, 4, 8],	[2, 3, 4, 5, 6, 7],	[4, 5, 6, 7, 3, 8],	[6, 3, 4, 8, 2, 7],	[8, 7, 2, 3, 4, 9],	[8, 9, 2, 6, 1, 5])
     
              
-from itertools import permutations 
+ 
 #import string
 permList = permutations([A,B,C,D,E,F])
 permString = permutations("ABCDEF")
@@ -201,7 +213,6 @@ print(e-s)
 
 #time.sleep(500)
 #input("Press something to exit")
-import pandas as pd
 
 dataFrame = pd.DataFrame(result,)
 
