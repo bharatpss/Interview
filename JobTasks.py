@@ -81,7 +81,7 @@ def Inp(n):
             continue
     
     return b
-
+'''
 print("Enter Tasks for Job A: ")
 #A = [int(input()) for _ in range(n)]
 A = Inp(n)
@@ -100,6 +100,13 @@ E = Inp(n)
 print("Enter Tasks for Job F: ")
 #F = [int(input()) for _ in range(n)]
 F = Inp(n)
+'''
+A = [2,3,4,5,6,7]
+B = [8,7,2,3,4,9]
+C = [4,5,6,7,3,8]
+D = [8,9,2,6,1,5]
+E = [5,2,6,3,4,8]
+F = [6,3,4,8,2,7]
 print("------------------------------------------------------------------------")
 
 print("Job A Taks {}".format(A))
@@ -119,13 +126,8 @@ class JobTask():
     "This is Job Task Management class"
     que.clear()
     count = 0
-    def __init__(self,a,b,c,d,e,f):
-        self.a=a
-        self.b=b
-        self.c=c
-        self.d=d
-        self.e=e
-        self.f=f
+    def __init__(self,*args):
+        self.args = args
     
     def cal(self,z):
         for j in z:
@@ -146,24 +148,16 @@ class JobTask():
         
         return self.count
     
-    def opt_function(self):
-
-        que.extend(self.a)
-    
-        '''for j in self.b:
-            if j not in list(que):
-                que.put(j)
-            else:
-                pass'''
-        self.cal(self.b)
-        self.cal(self.c)
-        self.cal(self.d)#, print(self.count)
-        self.cal(self.e)
-        return self.cal(self.f)
+    def opt_function(self, *args):
+        que.extend(self.args[0])
+        for j in self.args[1:len(self.args)]:
+            self.cal(j)
+        
+        return self.count
          
     
 
-'''
+
 #A = [2,3,4,5]
 #B = [8,7,2,3]
 #C = [4,5,6,7]
@@ -174,7 +168,7 @@ C = [4,5,6,7,3,8]
 D = [8,9,2,6,1,5]
 E = [5,2,6,3,4,8]
 F = [6,3,4,8,2,7]
-'''
+
 
 
 
@@ -192,12 +186,13 @@ del jb
 s = time.time()
 permList = permutations([A,B,C,D,E,F])
 permString = permutations("ABCDEF")
+
 result = []
 # print all permutations
 for perm, stri in zip(list(permList), list(permString)):
     #print(perm)
     x=[]
-    jb = JobTask(perm[0], perm[1], perm[2], perm[3], perm[4], perm[5])
+    jb = JobTask(*perm)
     r = jb.opt_function()
     x.append(stri)
     x.extend(perm)
